@@ -35,7 +35,7 @@ jobs:
 
       - name: Tag Image
         run:
-          docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ matrix.image }}
+          docker tag ${{ env.K8S_REGISTRY }}/${{ matrix.image }} ${{ env.REGISTRY }}/${{ matrix.image }}
 
       - name: Push Image
         run:
