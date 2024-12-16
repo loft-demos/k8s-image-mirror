@@ -30,6 +30,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Login to Docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.KM_PAT_DELETE_PACKAGES }}
+
       - name: Pull Image from Docker Hub
         run: docker pull ${{ env.K8S_REGISTRY }}/${{ matrix.image }}
 
