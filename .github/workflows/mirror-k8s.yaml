@@ -1,0 +1,41 @@
+name: Mirror K8s Images
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Mirror Images
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: "write"
+      contents: "read"
+      id-token: "write"
+
+    env:
+      REGISTRY: "ghcr.io/loft-demos/k8s-image-mirror"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - "registry.k8s.io/kube-apiserver:v1.31.1"
+          - "registry.k8s.io/kube-apiserver:v1.30.2"
+          - "registry.k8s.io/kube-apiserver:v1.29.6"
+          - "registry.k8s.io/kube-controller-manager:v1.31.1"
+          - "registry.k8s.io/kube-controller-manager:v1.30.2"
+          - "registry.k8s.io/kube-controller-manager:v1.29.6"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull Image from Docker Hub
+        run: docker pull ${{ matrix.image }}
+
+      - name: Tag Image
+        run:
+          docker tag ${{ matrix.image }} ${{ env.REGISTRY }}/${{ matrix.image }}
+
+      - name: Push Image
+        run:
+          docker ${{ env.REGISTRY }}/${{ matrix.image }}
