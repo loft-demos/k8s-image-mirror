@@ -14,7 +14,7 @@ jobs:
 
     env:
       K8S_REGISTRY: "registry.k8s.io"
-      REGISTRY: "ghcr.io/loft-demos/k8s-image-mirror"
+      REGISTRY: "ghcr.io/loft-demos"
 
     strategy:
       fail-fast: false
