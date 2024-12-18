@@ -35,6 +35,7 @@ jobs:
           - "kube-scheduler:v1.30.5"
           - "kube-scheduler:v1.30.2"
           - "kube-scheduler:v1.29.6"
+          - "etcd:3.5.15-0"
 
     steps:
       - uses: actions/checkout@v4
