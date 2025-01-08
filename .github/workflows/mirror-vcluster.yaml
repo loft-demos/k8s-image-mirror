@@ -13,7 +13,7 @@ jobs:
       id-token: "write"
 
     env:
-      VCLUSTER_REGISTRY: "ghcr.io/loft-sh/"
+      VCLUSTER_REGISTRY: "ghcr.io/loft-sh"
       REGISTRY: "ghcr.io/loft-demos"
 
     strategy:
