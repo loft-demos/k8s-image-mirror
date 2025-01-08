@@ -1,0 +1,44 @@
+name: Mirror K8s Images
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Mirror Images
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: "write"
+      contents: "read"
+      id-token: "write"
+
+    env:
+      VCLUSTER_REGISTRY: "ghcr.io/loft-sh/"
+      REGISTRY: "ghcr.io/loft-demos"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - "vcluster-pro:0.21.2"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Image from Docker Hub
+        run: docker pull ${{ env.VCLUSTER_REGISTRY }}/${{ matrix.image }}
+
+      - name: Tag Image
+        run:
+          docker tag ${{ env.VCLUSTER_REGISTRY }}/${{ matrix.image }} ${{ env.REGISTRY }}/${{ matrix.image }}
+
+      - name: Push Image
+        run:
+          docker push ${{ env.REGISTRY }}/${{ matrix.image }}
