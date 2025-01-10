@@ -21,6 +21,7 @@ jobs:
       matrix:
         image:
           - "vcluster-pro:0.21.2"
+          - "vcluster-pro-fips:0.21.2"
 
     steps:
       - uses: actions/checkout@v4
