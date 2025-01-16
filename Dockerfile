@@ -4,7 +4,7 @@ FROM registry.k8s.io/kube-controller-manager:${K8S_VERSION} AS kube-controller-m
 
 FROM registry.k8s.io/kube-apiserver:${K8S_VERSION} AS kube-apiserver
 
-FROM registry.k8s.io/kube-scehduler:${K8S_VERSION} AS kube-scheduler
+FROM registry.k8s.io/kube-scheduler:${K8S_VERSION} AS kube-scheduler
 
 FROM ghcr.io/loft-sh/vcluster-pro:${VCLUSER_PRO_VERSION}
 
