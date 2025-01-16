@@ -34,7 +34,5 @@ jobs:
           context: ./
           platforms: linux/amd64
           push: true
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }},${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.21.2-k8s.v1.30.5
           labels: ${{ steps.meta.outputs.labels }}
