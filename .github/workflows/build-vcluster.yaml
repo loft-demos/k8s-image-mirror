@@ -34,5 +34,5 @@ jobs:
           context: ./
           platforms: linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }},${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.21.2-k8s.v1.30.5
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.21.2-k8s.v1.30.5
           labels: ${{ steps.meta.outputs.labels }}
