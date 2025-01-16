@@ -9,6 +9,6 @@ FROM registry.k8s.io/kube-scheduler:${K8S_VERSION} AS kube-scheduler
 FROM ghcr.io/loft-sh/vcluster-pro:${VCLUSER_PRO_VERSION}
 
 COPY --from=kube-controller-manager /usr/local/bin/kube-controller-manager /binaries/kube-controller-manager
-COPY --from=kube-apiserver /usr/local/bin/kube-apiserver /binaries/kkube-apiserver
+COPY --from=kube-apiserver /usr/local/bin/kube-apiserver /binaries/kube-apiserver
 COPY --from=kube-scheduler /usr/local/bin/kube-scheduler /binaries/kube-scheduler
 
