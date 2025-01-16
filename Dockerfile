@@ -1,4 +1,4 @@
-ARG VCLUSER_PRO_VERSION="0.21.2"
+ARG VCLUSER_PRO_VERSION="0.22.1"
 ARG K8S_VERSION="v1.30.5"
 FROM registry.k8s.io/kube-controller-manager:${K8S_VERSION} AS kube-controller-manager
 
