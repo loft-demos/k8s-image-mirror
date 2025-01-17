@@ -7,9 +7,11 @@ env:
   REGISTRY: ghcr.io/loft-demos
   # github.repository as <account>/<repo>
   IMAGE_NAME: vcluster-pro
+  VCLUSER_PRO_VERSION: "0.22.3"
+  K8S_VERSION: "v1.30.5"
 
 jobs:
-  release:
+  build-push-image:
     name: Build vCluster
     runs-on: ubuntu-latest
 
@@ -17,6 +19,17 @@ jobs:
       packages: "write"
       contents: "read"
       id-token: "write"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        vcluster-version:
+          - "0.22.3"
+        k8s-version:
+          - "v1.29.12"
+          - "v1.30.8"
+          - "v1.31.4"
+          - "v1.32.0"
 
     steps:
       - uses: actions/checkout@v4
@@ -34,5 +47,8 @@ jobs:
           context: ./
           platforms: linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.22.1-rc.2-k8s.v1.30.5
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.vcluster-version }}-k8s.${{ matrix.k8s-version }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VCLUSER_PRO_VERSION =${{ matrix.vcluster-version }}
+            K8S_VERSION=${{ matrix.k8s-version }}
