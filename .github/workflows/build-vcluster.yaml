@@ -8,7 +8,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: vcluster-pro
   VCLUSER_PRO_VERSION: "0.22.3"
-  K8S_VERSION: "v1.30.5"
+  K8S_VERSION: "v1.31.4"
 
 jobs:
   build-push-image:
@@ -29,7 +29,7 @@ jobs:
           - "v1.29.12"
           - "v1.30.8"
           - "v1.31.4"
-          - "v1.32.0"
+          - "v1.32.1"
 
     steps:
       - uses: actions/checkout@v4
