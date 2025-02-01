@@ -23,8 +23,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # runner_platform: [ { runner: 	ubuntu-24.04, platform: linux/amd64, architecture: amd64 }, { runner: 	ubuntu-24.04-arm, platform: linux/arm64, architecture: arm64 } ]
         vcluster-version:
           - "0.22.3"
+          - "0.23.0-alpha.6"
         k8s-version:
           - "v1.29.13"
           - "v1.30.9"
