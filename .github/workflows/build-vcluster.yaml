@@ -27,28 +27,30 @@ jobs:
         vcluster-version:
           - "0.22.3"
           - "0.22.4"
-          - "0.23.0-alpha.8"
+          - "0.23.0-rc.2"
         k8s-version:
-          - "v1.29.13"
-          - "v1.30.9"
-          - "v1.31.5"
-          - "v1.32.1"
+          - "v1.29.14"
+          - "v1.30.10"
+          - "v1.31.6"
+          - "v1.32.2"
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - name: Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.vcluster-version }}-k8s.${{ matrix.k8s-version }}
           labels: ${{ steps.meta.outputs.labels }}
