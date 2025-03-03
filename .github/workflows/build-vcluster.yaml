@@ -56,5 +56,5 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.vcluster-version }}-k8s.${{ matrix.k8s-version }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            VCLUSTER_PRO_VERSION =${{ matrix.vcluster-version }}
+            VCLUSTER_PRO_VERSION=${{ matrix.vcluster-version }}
             K8S_VERSION=${{ matrix.k8s-version }}
