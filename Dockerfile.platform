@@ -3,7 +3,7 @@ FROM ghcr.io/loft-sh/vcluster-platform:4.2.2
 USER root
 
 RUN mkdir -p -m 777 /home/loft/cache && \
-	chown -R 998 /home/loft/cache
+	chown -R 998 /home/loft/cache/helm/repository
 
 # Switch to loft user
 USER 998
