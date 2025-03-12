@@ -14,8 +14,12 @@ COPY --from=kube-scheduler /usr/local/bin/kube-scheduler /binaries/kube-schedule
 
 # switch to root to ensure necessary permissions
 USER root
-RUN mkdir -p -m 777 /home/loft/cache
-RUN chown -R loft:loft /home/loft/cache
+
+RUN addgroup -g 998 loft && \
+	adduser -S -u 998 -h /home/loft -s /bin/sh -g loft loft && \
+  mkdir -p -m 777 /home/loft/cache && \
+  chown -R loft:loft /home/loft/cache
+  
 ENV XDG_CACHE_HOME="/home/loft/cache" 
 
 # Switch to loft user
