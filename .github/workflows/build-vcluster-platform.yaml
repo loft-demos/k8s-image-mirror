@@ -1,4 +1,4 @@
-name: Build vCluster with K8s
+name: Build vCluster Platform
 on:
   workflow_dispatch:
 
