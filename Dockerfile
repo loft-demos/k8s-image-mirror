@@ -12,3 +12,11 @@ COPY --from=kube-controller-manager /usr/local/bin/kube-controller-manager /bina
 COPY --from=kube-apiserver /usr/local/bin/kube-apiserver /binaries/kube-apiserver
 COPY --from=kube-scheduler /usr/local/bin/kube-scheduler /binaries/kube-scheduler
 
+# switch to root to ensure necessary permissions
+USER root
+RUN mkdir -p -m 777 /home/loft/cache
+RUN chown -R loft:loft /home/loft/cache
+ENV XDG_CACHE_HOME="/home/loft/cache" 
+
+# Switch to loft user
+USER 998
