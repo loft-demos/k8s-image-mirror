@@ -1,0 +1,10 @@
+FROM ghcr.io/loft-sh/vcluster-platform:4.2.2
+
+USER root
+
+RUN mkdir -p -m 777 /home/loft/cache && \
+	chown -R 998 /home/loft/cache
+
+# Switch to loft user
+USER 998
+ENV XDG_CACHE_HOME="/home/loft/cache" 
