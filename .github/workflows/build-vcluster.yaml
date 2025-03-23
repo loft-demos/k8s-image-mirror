@@ -25,9 +25,9 @@ jobs:
       matrix:
         # runner_platform: [ { runner: 	ubuntu-24.04, platform: linux/amd64, architecture: amd64 }, { runner: 	ubuntu-24.04-arm, platform: linux/arm64, architecture: arm64 } ]
         vcluster-version:
-          - "0.22.4"
+          - "0.22.5"
           - "0.23.0"
-          - "0.24.0-rc.4"
+          - "0.24.0"
         k8s-version:
           - "v1.29.14"
           - "v1.30.10"
